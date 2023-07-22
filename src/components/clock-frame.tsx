@@ -56,6 +56,7 @@ const ClockBase = styled.div`
 
 const ClockCircleFrame = styled.div<{ size: number }>`
     background: transparent;
+    filter: drop-shadow(0 0 .1rem var(--color-012));
 
     border: 1px inset var(--color-001);
     border-radius: 100%;
@@ -66,6 +67,17 @@ const ClockCircleFrame = styled.div<{ size: number }>`
 
     aspect-ratio: 1/1;
     width: ${props => props.size}%;
+`
+
+const ClockCircleFull = styled.div`
+    background: radial-gradient(circle at 100%, var(--color-001), var(--color-002));
+    filter: drop-shadow(0 0 .1rem var(--color-003));
+
+    border: 1px solid var(--color-001);
+    border-radius: 100%;
+
+    height: 20%;
+    width: 20%;
 `
 
 const ClockHourContainer = styled.div`
@@ -114,13 +126,36 @@ const ClockHourFrame = styled.div<{width: number}>`
     width: ${props => props.width}%;
 `
 
+const ClockPointer = styled.div<{ 
+    height: number, width: number, bottom: number, rotate?: number
+ }>`
+    background: linear-gradient(to top, var(--color-007), var(--color-006), var(--color-005));
+    filter: drop-shadow(0 0 .1rem var(--color-004));
+
+    border: 1px solid var(--color-007);
+    border-radius: 100%;
+    transform-origin: bottom;
+    transform: rotate(${props => props.rotate}deg);
+
+    position: absolute;
+    bottom: ${props => props.bottom}%;
+
+    height: ${props => props.height}%;
+    width: ${props => props.width}%;
+`
+
 const ClockFrame = () => {
     return (
         <OuterFrame>
             <InnerFrame>
                 <ClockBase>
                     <ClockCircleFrame size={80}>
-                        <ClockCircleFrame size={60}></ClockCircleFrame>
+                        <ClockCircleFrame size={60}>
+                            <ClockPointer height={120} width={.7} bottom={12} />
+                            <ClockPointer height={73} width={1.15} bottom={50} rotate={60} />
+                            <ClockPointer height={63} width={1.25} bottom={50} rotate={90} />
+                            <ClockCircleFull />
+                        </ClockCircleFrame>
                     </ClockCircleFrame>
                     <ClockHourContainer>
                         <ClockHour>
