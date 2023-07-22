@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { screenSizes } from "../App";
 
 
 const TopBarContent = styled.div`
@@ -11,7 +12,11 @@ const TopBarContent = styled.div`
     margin: 5px;
 
     height: 4%;
-    width: 15%;
+    width: 40%;
+
+    @media only screen and (min-width: ${screenSizes.laptop}) {
+        width: 15%;
+    }
 `
 
 const TopBar = () => {
