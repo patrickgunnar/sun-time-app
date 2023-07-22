@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { screenSizes } from "../App";
+import { screenSizes } from "../screen-sizes";
 
 
 const OuterFrame = styled.div`
@@ -95,7 +95,7 @@ const ClockHourContainer = styled.div`
     width: 95%;
 `
 
-const ClockHour = styled.span<{ rotate?: number, tEnd?: number }>`
+const ClockHour = styled.span<{ rotate?: number, end?: number }>`
     background: transparent;
     border: none;
 
@@ -106,7 +106,7 @@ const ClockHour = styled.span<{ rotate?: number, tEnd?: number }>`
 
     transform: 
         rotate(${props => props.rotate ?? 0}deg) 
-        translate(0%, ${props => props.tEnd ?? 0}%)
+        translate(0%, ${props => props.end ?? 0}%)
     ;
 
     position: absolute;
@@ -162,23 +162,23 @@ const ClockFrame = () => {
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
-                        <ClockHour rotate={90} tEnd={50}>
+                        <ClockHour rotate={90} end={50}>
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
-                        <ClockHour rotate={120} tEnd={30}>
+                        <ClockHour rotate={120} end={30}>
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
-                        <ClockHour rotate={150} tEnd={18}>
+                        <ClockHour rotate={150} end={18}>
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
-                        <ClockHour rotate={210} tEnd={-17}>
+                        <ClockHour rotate={210} end={-17}>
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
-                        <ClockHour rotate={240} tEnd={-30}>
+                        <ClockHour rotate={240} end={-30}>
                             <ClockHourFrame width={4} />
                             <ClockHourFrame width={4} />
                         </ClockHour>
