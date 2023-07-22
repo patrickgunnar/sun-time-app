@@ -11,6 +11,7 @@
 	--color-009: #ebf1f7;
 	--color-010: #eaf0e3;
 	--color-011: #b1a189;
+	--color-012: #65687780;
 	
 	--_c-001: 75%,var(--color-003) 52.72deg,var(--color-004) 0;
 	--_g-001: conic-gradient(from -116.36deg at 25% var(--_c-001));
