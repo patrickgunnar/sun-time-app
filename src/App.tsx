@@ -3,6 +3,10 @@ import ClockFrame from "./components/clock-frame";
 import TopBar from "./components/top-bar";
 import Dock from "./components/dock";
 
+export const screenSizes = {
+	laptop: "1024px"
+}
+
 const MainContent = styled.div`
 	background:
 		var(--_g-001), var(--_g-001) calc(3 * var(--size-001)) calc(var(--size-001) / 2),
