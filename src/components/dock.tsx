@@ -19,5 +19,5 @@ const Dock = () => {
         <DockContent></DockContent>
     );
 }
- 
+
 export default Dock;
