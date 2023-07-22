@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { screenSizes } from "../App";
 
 
 const DockContent = styled.div`
@@ -11,7 +12,11 @@ const DockContent = styled.div`
     margin: 5px;
 
     height: 7%;
-    width: 60%;
+    width: 80%;
+
+    @media only screen and (min-width: ${screenSizes.laptop}) {
+        width: 60%;
+    }
 `
 
 const Dock = () => {
