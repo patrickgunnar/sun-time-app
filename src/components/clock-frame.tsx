@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { screenSizes } from "../App";
 
 
 const OuterFrame = styled.div`
@@ -15,7 +16,11 @@ const OuterFrame = styled.div`
     align-items: center;
 
     aspect-ratio: 1/1;
-    width: 35%;
+    width: 90%;
+
+    @media only screen and (min-width: ${screenSizes.laptop}) {
+        width: 35%;
+    }
 `
 
 const InnerFrame = styled.div`
@@ -43,16 +48,107 @@ const ClockBase = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     aspect-ratio: 1/1;
     width: 95%;
+`
+
+const ClockCircleFrame = styled.div<{ size: number }>`
+    background: transparent;
+
+    border: 1px inset var(--color-001);
+    border-radius: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    aspect-ratio: 1/1;
+    width: ${props => props.size}%;
+`
+
+const ClockHourContainer = styled.div`
+    background: transparent;
+
+    border: none;
+    border-radius: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    aspect-ratio: 1/1;
+    width: 95%;
+`
+
+const ClockHour = styled.span<{ rotate?: number, tEnd?: number }>`
+    background: transparent;
+    border: none;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    transform: 
+        rotate(${props => props.rotate ?? 0}deg) 
+        translate(0%, ${props => props.tEnd ?? 0}%)
+    ;
+
+    position: absolute;
+
+    height: 1.5%;
+    width: 100%;
+`
+
+const ClockHourFrame = styled.div<{width: number}>`
+    background: linear-gradient(to top, var(--color-009), var(--color-010), var(--color-011));
+    filter: drop-shadow(0 0 .1rem var(--color-003));
+
+    border: 1px inset var(--color-001);
+    border-radius: 30px;
+
+    height: 100%;
+    width: ${props => props.width}%;
 `
 
 const ClockFrame = () => {
     return (
         <OuterFrame>
             <InnerFrame>
-                <ClockBase></ClockBase>
+                <ClockBase>
+                    <ClockCircleFrame size={80}>
+                        <ClockCircleFrame size={60}></ClockCircleFrame>
+                    </ClockCircleFrame>
+                    <ClockHourContainer>
+                        <ClockHour>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                        <ClockHour rotate={90} tEnd={50}>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                        <ClockHour rotate={120} tEnd={30}>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                        <ClockHour rotate={150} tEnd={18}>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                        <ClockHour rotate={210} tEnd={-17}>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                        <ClockHour rotate={240} tEnd={-30}>
+                            <ClockHourFrame width={4} />
+                            <ClockHourFrame width={4} />
+                        </ClockHour>
+                    </ClockHourContainer>
+                </ClockBase>
             </InnerFrame>
         </OuterFrame>
     );
