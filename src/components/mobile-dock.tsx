@@ -13,16 +13,13 @@ interface MobileDockProps {
     onChange: (step: number) => void
 }
 
-const MobileMenuContainer = styled.div`
-    transition: all 2s ease-out;
+const MobileBlackContainer = styled.div`
+    transition: all 2s ease-in-out;
 
-    display: flex;
-    justify-content: center;
-    align-items: end;
+    background: var(--color-012);
 
     position: absolute;
     bottom: 0;
-    left: 0;
 
     height: 100%;
     width: 100%;
@@ -32,20 +29,8 @@ const MobileMenuContainer = styled.div`
     }
 `
 
-const MobileBlackContainer = styled.div`
-    transition: all 2s ease-out;
-
-    background: var(--color-012);
-
-    position: absolute;
-    bottom: 0;
-
-    height: 100%;
-    width: 100%;
-`
-
 const MobileDockMenu = styled.div`
-    transition: all 3s ease-out;
+    transition: all 3s ease-in-out;
 
     background: linear-gradient(to bottom, var(--color-007), var(--color-006), var(--color-005));
     filter: drop-shadow(0 0 .1rem var(--color-008));
@@ -111,6 +96,10 @@ const DockContent = styled.button`
     height: 7%;
     width: 30%;
     overflow: hidden;
+
+    @media only screen and (min-width: ${screenSizes.tablet}) {
+        display: none;
+    }
 `
 
 const MobileDock: React.FC<MobileDockProps> = ({
@@ -126,7 +115,7 @@ const MobileDock: React.FC<MobileDockProps> = ({
     }
 
     return (
-        <MobileMenuContainer>
+        <>
             {
                 isOpen && (
                     <MobileBlackContainer onClick={() => setIsOpen(false)} />
@@ -159,7 +148,7 @@ const MobileDock: React.FC<MobileDockProps> = ({
                     !isOpen ? <GrMenu size={20} /> : <GrClose size={20} />
                 }
             </DockContent>
-        </MobileMenuContainer>
+        </>
     );
 }
  
