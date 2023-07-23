@@ -4,6 +4,7 @@ import TopBar from "./components/top-bar";
 import Dock from "./components/dock";
 import { useState } from "react";
 import { screenSizes } from "./screen-sizes";
+import MobileDock from "./components/mobile-dock";
 
 
 enum STEPS {
@@ -171,6 +172,7 @@ function App() {
 			{currentLayout}
 			{currentLocalLayout}
 			<Dock step={step} onChange={setStep} />
+			<MobileDock step={step} onChange={setStep} />
 		</MainContent>
 	);
 }
