@@ -56,8 +56,8 @@ const MobileDockMenu = styled.div`
     }
 `
 
-const Button = styled.button<{isActive?: boolean}>`
-    background: ${props => props.isActive ? 'var(--color-012)' : 'transparent'};
+const Button = styled.button<{isactive?: boolean}>`
+    background: ${props => props.isactive ? 'var(--color-012)' : 'transparent'};
 
     display: flex;
     gap: 5px;
@@ -66,7 +66,7 @@ const Button = styled.button<{isActive?: boolean}>`
     padding: 0% 10%;
 
     border: none;
-    cursor: ${props => props.isActive ? 'default' : 'pointer'};
+    cursor: ${props => props.isactive ? 'default' : 'pointer'};
     color: var(--color-3);
     font-weight: 600;
     font-size: medium;
@@ -76,7 +76,7 @@ const Button = styled.button<{isActive?: boolean}>`
     width: 100%;
 
     &:focus {
-        ${props => props.isActive ? '' : 'background: var(--color-012);'}
+        ${props => props.isactive ? '' : 'background: var(--color-012);'}
     }
 `
 
@@ -124,19 +124,19 @@ const MobileDock: React.FC<MobileDockProps> = ({
             {
                 isOpen && (
                     <MobileDockMenu>
-                        <Button isActive={step === 0} disabled={step === 0} onClick={() => handleOnChange(0)}>
+                        <Button isactive={step === 0} disabled={step === 0} onClick={() => handleOnChange(0)}>
                             <AiTwotoneHome size={20} />
                             Main
                         </Button>
-                        <Button isActive={step === 1} disabled={step === 1} onClick={() => handleOnChange(1)}>
+                        <Button isactive={step === 1} disabled={step === 1} onClick={() => handleOnChange(1)}>
                             <BsStopwatchFill size={20} />
                             Stopwatch
                         </Button>
-                        <Button isActive={step === 2} disabled={step === 2} onClick={() => handleOnChange(2)}>
+                        <Button isactive={step === 2} disabled={step === 2} onClick={() => handleOnChange(2)}>
                             <RiTimer2Fill size={20} />
                             Timer
                         </Button>
-                        <Button isActive={step === 3} disabled={step === 3} onClick={() => handleOnChange(3)}>
+                        <Button isactive={step === 3} disabled={step === 3} onClick={() => handleOnChange(3)}>
                             <FaExclamationCircle size={20} />
                             About
                         </Button>

@@ -29,11 +29,11 @@ const TopBarContent = styled.div`
     }
 `
 
-const Button = styled.button<{isActive?: boolean}>`
-    background: ${props => props.isActive ? 'var(--color-012)' : 'transparent'};
+const Button = styled.button<{isactive?: boolean}>`
+    background: ${props => props.isactive ? 'var(--color-012)' : 'transparent'};
 
     border: none;
-    cursor: ${props => props.isActive ? 'default' : 'pointer'};
+    cursor: ${props => props.isactive ? 'default' : 'pointer'};
     color: var(--color-3);
     font-weight: 600;
     font-size: x-small;
@@ -43,7 +43,7 @@ const Button = styled.button<{isActive?: boolean}>`
     width: 50%;
 
     &:hover {
-        ${props => props.isActive ? '' : 'background: var(--color-012);'}
+        ${props => props.isactive ? '' : 'background: var(--color-012);'}
     }
 
     @media only screen and (min-width: ${screenSizes.tablet}) {
@@ -73,10 +73,10 @@ const TopBar: React.FC<TopBarProps> = ({
 
     return (
         <TopBarContent>
-            <Button isActive={step === 0} disabled={step === 0} onClick={() => handleOnChange(0)}>
+            <Button isactive={step === 0} disabled={step === 0} onClick={() => handleOnChange(0)}>
                 Current
             </Button>
-            <Button isActive={step === 1} disabled={step === 1} onClick={() => handleOnChange(1)}>
+            <Button isactive={step === 1} disabled={step === 1} onClick={() => handleOnChange(1)}>
                 World
             </Button>
         </TopBarContent>
