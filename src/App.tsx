@@ -43,8 +43,8 @@ const MainContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	height: 89%;
-	width: 90%;
+	height: 86%;
+	width: 80%;
 
     @media only screen and (min-width: ${screenSizes.laptop}) {
         width: 35%;
@@ -53,7 +53,7 @@ const MainContainer = styled.div`
 
 const ClocksContainer = styled.div`
 	display: grid;
-	gap: 80px;
+	gap: 40px;
 	grid-template-columns: repeat(1, 70%);
 	justify-content: center;
 	align-items: center;
@@ -72,13 +72,17 @@ const ClocksContainer = styled.div`
 
 const Wrapper = styled.div`
 	display: flex;
-	gap: 40px;
+	gap: 20px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
 	height: 100%;
 	width: 100%;
+
+	@media only screen and (min-width: ${screenSizes.laptop}) {
+		gap: 40px;
+    }
 `
 
 const H3 = styled.h3`
