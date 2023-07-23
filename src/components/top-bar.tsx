@@ -17,8 +17,12 @@ const TopBarContent = styled.div`
     margin: 5px;
 
     height: 4%;
-    width: 40%;
+    width: 60%;
     overflow: hidden;
+
+    @media only screen and (min-width: ${screenSizes.mobile}) {
+        width: 40%;
+    }
 
     @media only screen and (min-width: ${screenSizes.laptop}) {
         width: 15%;
@@ -32,7 +36,7 @@ const Button = styled.button<{isActive?: boolean}>`
     cursor: ${props => props.isActive ? 'default' : 'pointer'};
     color: var(--color-3);
     font-weight: 600;
-    font-size: small;
+    font-size: x-small;
     text-transform: uppercase;
 
     height: 100%;
@@ -40,6 +44,22 @@ const Button = styled.button<{isActive?: boolean}>`
 
     &:hover {
         ${props => props.isActive ? '' : 'background: var(--color-012);'}
+    }
+
+    @media only screen and (min-width: ${screenSizes.tablet}) {
+        font-size: medium;
+    }
+
+    @media only screen and (min-width: ${screenSizes.xtablet}) {
+        font-size: large;
+    }
+
+    @media only screen and (min-width: ${screenSizes.laptop}) {
+        font-size: small;
+    }
+
+    @media only screen and (min-width: ${screenSizes.desktop}) {
+        font-size: x-large;
     }
 `
 
