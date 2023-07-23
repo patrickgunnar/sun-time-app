@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { screenSizes } from "../screen-sizes";
+import { useEffect, useState } from "react";
 
 
 const OuterFrame = styled.div`
@@ -127,13 +128,13 @@ const ClockHourFrame = styled.div<{width: number}>`
 `
 
 const ClockPointer = styled.div<{ 
-    height: number, width: number, bottom: number, rotate?: number
+    height: number, width: number, bottom: number, rotate: number, after?: number
  }>`
-    background: linear-gradient(to top, var(--color-007), var(--color-006), var(--color-005));
+    background: linear-gradient(to top, var(--color-007), var(--color-006), var(--color-005), var(--color-005));
     filter: drop-shadow(0 0 .1rem var(--color-004));
 
     border: 1px solid var(--color-007);
-    border-radius: 100%;
+    border-radius: 100% 100% 0% 0%;
     transform-origin: bottom;
     transform: rotate(${props => props.rotate}deg);
 
@@ -142,18 +143,79 @@ const ClockPointer = styled.div<{
 
     height: ${props => props.height}%;
     width: ${props => props.width}%;
+
+    &::after {
+        content: " ";
+        background: linear-gradient(to top, var(--color-007), var(--color-007));
+        filter: drop-shadow(0 0 .1rem var(--color-004));
+
+        border: 1px solid var(--color-007);
+        border-radius: 0% 0% 150% 150%;
+
+        position: absolute;
+        transform: translate(-50%);
+        top: 100%;
+        left: 50%;
+        right: 50%;
+
+        height: ${props => props.after ?? 0}%;
+        width: 100%;
+    }
 `
 
 const ClockFrame = () => {
+    // clock seconds rotation
+    const [seconds, setSeconds] = useState<number>(new Date().getSeconds() * 6)
+    // clock minutes rotation
+    const [minutes, setMinutes] = useState<number>(new Date().getMinutes() * 6)
+    // clock hours rotation
+    const [hours, setHours] = useState<number>((((new Date().getHours() + 11) % 12) + 1) * 30)
+
+    useEffect(() => {
+        // generates current time handler
+        const getCurrentTime = () => {
+            const date = new Date()
+
+            const hour = ((date.getHours() + 11) % 12) + 1
+            const minute = date.getMinutes()
+            const second = date.getSeconds()
+
+            return {
+                hour, minute, second
+            }
+        }
+
+        // updates clock handler
+        const handleUpdate = () => {
+            const { hour, minute, second } = getCurrentTime()
+
+            // get time degrees
+            const hoursDeg = hour * 30
+            const minsDeg = minute * 6
+            const secsDeg = second * 6
+
+            // set hours
+            setHours(hoursDeg)
+            // set minutes
+            setMinutes(minsDeg)
+            // set secconds
+            setSeconds(secsDeg)
+        }
+
+        const interval = setInterval(handleUpdate, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
+
     return (
         <OuterFrame>
             <InnerFrame>
                 <ClockBase>
                     <ClockCircleFrame size={80}>
                         <ClockCircleFrame size={60}>
-                            <ClockPointer height={120} width={.7} bottom={12} />
-                            <ClockPointer height={73} width={1.15} bottom={50} rotate={60} />
-                            <ClockPointer height={63} width={1.25} bottom={50} rotate={90} />
+                            <ClockPointer height={63} width={1.30} bottom={50} rotate={hours} />
+                            <ClockPointer height={73} width={1.15} bottom={50} rotate={minutes} />
+                            <ClockPointer height={81} width={1} after={40} bottom={50} rotate={seconds} />
                             <ClockCircleFull />
                         </ClockCircleFrame>
                     </ClockCircleFrame>
