@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { screenSizes } from "../screen-sizes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 
 const OuterFrame = styled.div`
@@ -164,33 +164,35 @@ const ClockPointer = styled.div<{
 `
 
 const ClockFrame = () => {
+    // generates current time handler
+    const getCurrentTime = useCallback(() => {
+        const date = new Date()
+
+        const hour = ((date.getHours() + 11) % 12) + 1
+        const minute = date.getMinutes()
+        const second = date.getSeconds()
+
+        return {
+            hour, minute, second
+        }
+    }, [])
+
     // clock seconds rotation
-    const [seconds, setSeconds] = useState<number>(new Date().getSeconds() * 6)
+    const [seconds, setSeconds] = useState<number>(getCurrentTime().second * 6)
     // clock minutes rotation
-    const [minutes, setMinutes] = useState<number>(new Date().getMinutes() * 6)
+    const [minutes, setMinutes] = useState<number>(getCurrentTime().minute * 6)
     // clock hours rotation
-    const [hours, setHours] = useState<number>((((new Date().getHours() + 11) % 12) + 1) * 30)
+    const [hours, setHours] = useState<number>(
+        (getCurrentTime().hour * 30) + (getCurrentTime().minute * .5)
+    )
 
     useEffect(() => {
-        // generates current time handler
-        const getCurrentTime = () => {
-            const date = new Date()
-
-            const hour = ((date.getHours() + 11) % 12) + 1
-            const minute = date.getMinutes()
-            const second = date.getSeconds()
-
-            return {
-                hour, minute, second
-            }
-        }
-
         // updates clock handler
         const handleUpdate = () => {
             const { hour, minute, second } = getCurrentTime()
 
             // get time degrees
-            const hoursDeg = hour * 30
+            const hoursDeg = (hour * 30) + (minute * .5)
             const minsDeg = minute * 6
             const secsDeg = second * 6
 
