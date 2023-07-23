@@ -14,11 +14,19 @@ const DockContent = styled.div`
     border: 1px solid var(--color-007);
     border-radius: 10px;
 
+    display: none;
+    justify-content: center;
+    align-items: center;
+
     margin: 5px;
 
     height: 7%;
     width: 80%;
     overflow: hidden;
+
+    @media only screen and (min-width: ${screenSizes.tablet}) {
+        display: flex;
+    }
 
     @media only screen and (min-width: ${screenSizes.laptop}) {
         width: 60%;
