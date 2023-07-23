@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 import { screenSizes } from "../screen-sizes";
-
+import { AiTwotoneHome } from "react-icons/ai";
+import { BsStopwatchFill } from "react-icons/bs";
+import { RiTimer2Fill } from "react-icons/ri";
+import { FaExclamationCircle } from "react-icons/fa";
 
 interface DockProps {
     step: number
@@ -36,6 +39,11 @@ const DockContent = styled.div`
 const Button = styled.button<{isActive?: boolean}>`
     background: ${props => props.isActive ? 'var(--color-012)' : 'transparent'};
 
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
     border: none;
     cursor: ${props => props.isActive ? 'default' : 'pointer'};
     color: var(--color-3);
@@ -62,15 +70,19 @@ const Dock: React.FC<DockProps> = ({
     return (
         <DockContent>
             <Button isActive={step === 0} disabled={step === 0} onClick={() => handleOnChange(0)}>
+                <AiTwotoneHome size={20} />
                 Main
             </Button>
             <Button isActive={step === 1} disabled={step === 1} onClick={() => handleOnChange(1)}>
+                <BsStopwatchFill size={20} />
                 Stopwatch
             </Button>
             <Button isActive={step === 2} disabled={step === 2} onClick={() => handleOnChange(2)}>
+                <RiTimer2Fill size={20} />
                 Timer
             </Button>
             <Button isActive={step === 3} disabled={step === 3} onClick={() => handleOnChange(3)}>
+                <FaExclamationCircle size={20} />
                 About
             </Button>
         </DockContent>
