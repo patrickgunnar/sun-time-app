@@ -207,7 +207,7 @@ const ClockFrame = () => {
         const interval = setInterval(handleUpdate, 1000)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [getCurrentTime])
 
     return (
         <OuterFrame>
