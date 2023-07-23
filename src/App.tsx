@@ -3,6 +3,7 @@ import ClockFrame from "./components/clock-frame";
 import TopBar from "./components/top-bar";
 import Dock from "./components/dock";
 import { useState } from "react";
+import { screenSizes } from "./screen-sizes";
 
 
 enum STEPS {
@@ -35,6 +36,69 @@ const MainContent = styled.div`
 
 	height: 100vh; 
 	width: 100vw; 
+`
+
+const MainContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 89%;
+	width: 90%;
+
+    @media only screen and (min-width: ${screenSizes.laptop}) {
+        width: 35%;
+    }
+`
+
+const ClocksContainer = styled.div`
+	display: grid;
+	gap: 80px;
+	grid-template-columns: repeat(1, 70%);
+	justify-content: center;
+	align-items: center;
+
+	height: 86%;
+	width: 90%;
+
+	overflow: hidden;
+	overflow-y: auto;
+
+	@media only screen and (min-width: ${screenSizes.laptop}) {
+        grid-template-columns: repeat(4, 20%);
+		gap: 30px;
+    }
+`
+
+const Wrapper = styled.div`
+	display: flex;
+	gap: 40px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	height: 100%;
+	width: 100%;
+`
+
+const H3 = styled.h3`
+	background: linear-gradient(to top, var(--color-007), var(--color-006), var(--color-005));
+    filter: drop-shadow(0 0 .1rem var(--color-008));
+
+    border: 1px solid var(--color-007);
+    border-radius: 10px;
+
+    margin: 5px;
+	padding: 5px;
+	text-align: center;
+
+    height: fit-content;
+    width: 90%;
+    overflow: hidden;
+
+	@media only screen and (min-width: ${screenSizes.laptop}) {
+        width: 70%;
+    }
 `
 
 function App() {
@@ -72,13 +136,30 @@ function App() {
 	)
 
 	if(LOCALS.CURRENT === local && STEPS.MAIN === step) currentLocalLayout = (
-		<ClockFrame />
+		<MainContainer>
+			<ClockFrame />
+		</MainContainer>
 	)
 
 	if(LOCALS.WORLD === local  && STEPS.MAIN === step) currentLocalLayout = (
-		<div>
-			World
-		</div>
+		<ClocksContainer>
+			<Wrapper>
+				<H3>São Paulo</H3>
+				<ClockFrame timeZone="America/Sao_Paulo" />
+			</Wrapper>
+			<Wrapper>
+				<H3>Tokyo</H3>
+				<ClockFrame timeZone="Asia/Tokyo" />
+			</Wrapper>
+			<Wrapper>
+				<H3>Los Angeles</H3>
+				<ClockFrame timeZone="America/Los_Angeles" />
+			</Wrapper>
+			<Wrapper>
+				<H3>Paris</H3>
+				<ClockFrame timeZone="Europe/Paris" />
+			</Wrapper>
+		</ClocksContainer>
 	)
 
 	return (
