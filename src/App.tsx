@@ -44,6 +44,8 @@ const MainContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 
+	position: relative;
+
 	height: 86%;
 	width: 80%;
 
