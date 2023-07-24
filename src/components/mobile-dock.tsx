@@ -21,6 +21,8 @@ const MobileBlackContainer = styled.div`
     position: absolute;
     top: 50%;
     bottom: 50%;
+    left: 50%;
+    right: 50%;
     transform: translate(-50%);
 
     height: 100%;
