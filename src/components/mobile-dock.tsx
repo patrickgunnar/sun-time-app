@@ -19,10 +19,7 @@ const MobileBlackContainer = styled.div`
     background: var(--color-012);
 
     position: absolute;
-    bottom: 0%;
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%);
+    top: 0%;
 
     height: 100%;
     width: 100%;
