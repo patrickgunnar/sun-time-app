@@ -14,7 +14,12 @@ const TopBarContent = styled.div`
     border: 1px solid var(--color-007);
     border-radius: 10px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     margin: 5px;
+    padding: 10px;
 
     height: 4%;
     width: 60%;
@@ -33,6 +38,7 @@ const Button = styled.button<{isactive?: boolean}>`
     background: ${props => props.isactive ? 'var(--color-012)' : 'transparent'};
 
     border: none;
+    border-radius: 5px;
     cursor: ${props => props.isactive ? 'default' : 'pointer'};
     color: var(--color-3);
     font-weight: 600;
@@ -40,7 +46,7 @@ const Button = styled.button<{isactive?: boolean}>`
     text-transform: uppercase;
 
     height: 100%;
-    width: 50%;
+    width: 48%;
 
     &:hover {
         ${props => props.isactive ? '' : 'background: var(--color-012);'}
