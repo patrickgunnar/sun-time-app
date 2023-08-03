@@ -72,7 +72,8 @@ const ClocksContainer = styled.div`
 
 	@media only screen and (min-width: ${screenSizes.laptop}) {
         grid-template-columns: repeat(4, 20%);
-		gap: 30px;
+		grid-column-gap: 30px;
+		grid-row-gap: 60px;
     }
 `
 
