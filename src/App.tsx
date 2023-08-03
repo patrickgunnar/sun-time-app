@@ -7,6 +7,7 @@ import { screenSizes } from "./screen-sizes";
 import MobileDock from "./components/mobile-dock";
 import DigitalClock from "./components/digital-clock";
 import DigitalTopbar from "./components/digital-topbar";
+import DigitalTimer from "./components/digital-timer";
 
 
 enum STEPS {
@@ -123,16 +124,13 @@ function App() {
 
 	if(STEPS.STOPWATCH === step) currentLayout = (
 		<>
-			<DigitalTopbar />
-			<DigitalClock />
+			<DigitalTopbar handleTimerReset={() => {}} handleTimerStart={() => {}} handleTimerStop={() => {}} />
+			<DigitalClock displayValue="0" />
 		</>
 	)
 
 	if(STEPS.TIMER === step) currentLayout = (
-		<>
-			<DigitalTopbar isTimer />
-			<DigitalClock />
-		</>
+		<DigitalTimer />
 	)
 
 	if(STEPS.ABOUT === step) currentLayout = (
