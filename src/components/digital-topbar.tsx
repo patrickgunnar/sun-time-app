@@ -1,11 +1,15 @@
 import { styled } from "styled-components";
 import { screenSizes } from "../screen-sizes";
-import useDigital from "../hooks/useDigital";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import useDigitalTimer from "../hooks/useDigitalTimer";
 
 
 interface DigitalTopbarProps {
     isTimer?: boolean
+    isReset?: boolean
+    handleTimerStart: () => void
+    handleTimerStop: () => void
+    handleTimerReset: () => void
 }
 
 const DigitalContainer = styled.div<{ timer?: boolean }>`
@@ -104,29 +108,44 @@ const BtnContainer = styled.div<{ timer?: boolean }>`
 `
 
 const DigitalTopbar: React.FC<DigitalTopbarProps> = ({
-    isTimer
+    isTimer, isReset, handleTimerStart, handleTimerStop, handleTimerReset
 }) => {
     // get digital hook
-    const { setReset, setStart, setStop, setTime } = useDigital()
+    const { setTime } = useDigitalTimer()
     // ref for input time
     const inputTimeRef = useRef<HTMLInputElement>(null)
 
     // input time handler
     const handleInputTime = () => {
-        if(inputTimeRef.current?.value) setTime(inputTimeRef.current?.value)
+        if(inputTimeRef.current?.value) {
+            // get selected hour and minutes
+            const [selectedHour, selectedMinute, selectedSeconds] = inputTimeRef.current?.value.split(':') ?? null
+
+            // set selected time
+            setTime(parseInt(selectedHour) || 0, parseInt(selectedMinute) || 0, parseInt(selectedSeconds) || 0)
+        }
     }
+
+    useEffect(() => {
+        if(isReset && inputTimeRef.current) inputTimeRef.current.value = ''
+    }, [isReset, inputTimeRef])
 
     return (
         <DigitalContainer timer={isTimer}>
             {
                 isTimer && (
-                    <DigitalInput placeholder="Insert time" type="time" ref={inputTimeRef} onChange={handleInputTime} />
+                    <DigitalInput placeholder="Insert time" 
+                        type="time" 
+                        step={1} 
+                        ref={inputTimeRef} 
+                        onChange={handleInputTime}
+                    />
                 )
             }
             <BtnContainer timer={isTimer}>
-                <Button onClick={() => setReset(true)}>Reset</Button>
-                <Button onClick={() => setStart(true)}>Start</Button>
-                <Button onClick={() => setStop(true)}>Stop</Button>
+                <Button onClick={handleTimerReset}>Reset</Button>
+                <Button onClick={handleTimerStart}>Start</Button>
+                <Button onClick={handleTimerStop}>Stop</Button>
             </BtnContainer>
         </DigitalContainer>
     );
