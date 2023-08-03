@@ -173,7 +173,7 @@ function App() {
 				<ClockFrame timeZone="America/Mexico_City" />
 			</Wrapper>
 			<Wrapper>
-				<H3>İstanbul</H3>
+				<H3>Istanbul</H3>
 				<ClockFrame timeZone="Europe/Istanbul" />
 			</Wrapper>
 			<Wrapper>
