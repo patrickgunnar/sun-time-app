@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 import { screenSizes } from "../screen-sizes";
-import useDigital from "../hooks/useDigital";
-import { useEffect } from "react";
 
 
-interface DigitalClockProps {}
+interface DigitalClockProps {
+    displayValue: string
+}
 
 const DigitalContainer = styled.div`
     background: linear-gradient(to top, var(--color-007), var(--color-006), var(--color-005));
@@ -21,15 +21,15 @@ const DigitalContainer = styled.div`
     width: 80%;
 
     @media only screen and (min-width: ${screenSizes.mobile}) {
-        width: 60%;
+        width: 80%;
     }
 
     @media only screen and (min-width: ${screenSizes.laptop}) {
-        width: 35%;
+        width: 45%;
     }
 
     @media only screen and (min-width: ${screenSizes.xlaptop}) {
-        width: 25%;
+        width: 35%;
     }
 `
 
@@ -44,19 +44,22 @@ const DigitalDisplay = styled.div`
     justify-content: center;
     align-items: center;
 
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    text-align: center;
+
     height: 70%;
     width: 70%;
 `
 
-const DigitalClock: React.FC<DigitalClockProps> = () => {
-    // get digital hook
-    const { reset, start, stop, time } = useDigital()
-
-    useEffect(() => {}, [reset, start, stop, time])
-
+const DigitalClock: React.FC<DigitalClockProps> = ({
+    displayValue
+}) => {
     return (
         <DigitalContainer>
-            <DigitalDisplay></DigitalDisplay>
+            <DigitalDisplay>
+                {displayValue}
+            </DigitalDisplay>
         </DigitalContainer>
     );
 }
