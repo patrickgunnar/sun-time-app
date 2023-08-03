@@ -168,6 +168,22 @@ function App() {
 				<H3>Paris</H3>
 				<ClockFrame timeZone="Europe/Paris" />
 			</Wrapper>
+			<Wrapper>
+				<H3>Ciudad de Mexico</H3>
+				<ClockFrame timeZone="America/Mexico_City" />
+			</Wrapper>
+			<Wrapper>
+				<H3>İstanbul</H3>
+				<ClockFrame timeZone="Europe/Istanbul" />
+			</Wrapper>
+			<Wrapper>
+				<H3>Moscow</H3>
+				<ClockFrame timeZone="Europe/Moscow" />
+			</Wrapper>
+			<Wrapper>
+				<H3>Beijing</H3>
+				<ClockFrame timeZone="Asia/Shanghai" />
+			</Wrapper>
 		</ClocksContainer>
 	)
 
