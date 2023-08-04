@@ -7,9 +7,9 @@ import useDigitalTimer from "../hooks/useDigitalTimer";
 interface DigitalTopbarProps {
     isTimer?: boolean
     isReset?: boolean
-    handleTimerStart: () => void
-    handleTimerStop: () => void
-    handleTimerReset: () => void
+    handleStart: () => void
+    handleStop: () => void
+    handleReset: () => void
 }
 
 const DigitalContainer = styled.div<{ timer?: boolean }>`
@@ -108,7 +108,7 @@ const BtnContainer = styled.div<{ timer?: boolean }>`
 `
 
 const DigitalTopbar: React.FC<DigitalTopbarProps> = ({
-    isTimer, isReset, handleTimerStart, handleTimerStop, handleTimerReset
+    isTimer, isReset, handleStart, handleStop, handleReset
 }) => {
     // get digital hook
     const { setTime } = useDigitalTimer()
@@ -143,9 +143,9 @@ const DigitalTopbar: React.FC<DigitalTopbarProps> = ({
                 )
             }
             <BtnContainer timer={isTimer}>
-                <Button onClick={handleTimerReset}>Reset</Button>
-                <Button onClick={handleTimerStart}>Start</Button>
-                <Button onClick={handleTimerStop}>Stop</Button>
+                <Button onClick={handleReset}>Reset</Button>
+                <Button onClick={handleStart}>Start</Button>
+                <Button onClick={handleStop}>Stop</Button>
             </BtnContainer>
         </DigitalContainer>
     );
