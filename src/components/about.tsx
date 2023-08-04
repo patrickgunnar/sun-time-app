@@ -9,20 +9,25 @@ const AboutConntainer = styled.div`
     border: 1px solid var(--color-007);
     border-radius: 10px;
     padding: 15px;
-    margin-top: 5%;
+    margin-top: 25%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 60%;
+    height: 65%;
     width: 80%;
 
     @media only screen and (min-width: ${screenSizes.mobile}) {
         width: 80%;
     }
 
+    @media only screen and (min-width: ${screenSizes.tablet}) {
+        margin-top: 15%;
+    }
+
     @media only screen and (min-width: ${screenSizes.laptop}) {
+        margin-top: 5%;
         width: 45%;
     }
 `
@@ -39,11 +44,18 @@ const AboutWrapper = styled.div`
     justify-content: center;
     align-items: center;
 
-    padding: 15px;
-    margin: 30px;
+    padding: 5px;
 
-    height: 80%;
-    width: 70%;
+    height: 90%;
+    width: 99%;
+
+    @media only screen and (min-width: ${screenSizes.tablet}) {
+        margin: 30px;
+        padding: 15px;
+
+        height: 80%;
+        width: 70%;
+    }
 `
 
 const TextContent = styled.div`
