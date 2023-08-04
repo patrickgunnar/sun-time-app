@@ -82,9 +82,9 @@ const DigitalTimer = () => {
     return (
         <>
             <DigitalTopbar isTimer isReset={isReset}
-                handleTimerReset={handleTimerReset} 
-                handleTimerStart={handleTimerStart} 
-                handleTimerStop={handleTimerStop} 
+                handleReset={handleTimerReset} 
+                handleStart={handleTimerStart} 
+                handleStop={handleTimerStop} 
             />
 			<DigitalClock displayValue={displayValue} />
         </>
