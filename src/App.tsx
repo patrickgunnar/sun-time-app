@@ -7,6 +7,7 @@ import { screenSizes } from "./screen-sizes";
 import MobileDock from "./components/mobile-dock";
 import DigitalTimer from "./components/digital-timer";
 import DigitalStopwatch from "./components/digital-stopwatch";
+import AboutPage from "./components/about";
 
 
 enum STEPS {
@@ -131,9 +132,7 @@ function App() {
 	)
 
 	if(STEPS.ABOUT === step) currentLayout = (
-		<div>
-			About
-		</div>
+		<AboutPage />
 	)
 
 	// current local layout
