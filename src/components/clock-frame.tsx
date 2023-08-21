@@ -22,7 +22,7 @@ const OuterFrame = styled.div`
     align-items: center;
 
     aspect-ratio: 1/1;
-    width: 100%;
+    width: 80%;
 `
 
 const InnerFrame = styled.div`
